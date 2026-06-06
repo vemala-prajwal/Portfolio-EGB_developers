@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  role      Role     @default(ADMIN)
+  createdAt DateTime @default(now())
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  category    String
+  description String
+  image       String
+  demoUrl     String?
+  githubUrl   String?
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model Service {
+  id        String   @id @default(cuid())
+  title     String
+  subtitle  String
+  price     String
+  features  String[]
+}
+
+model Testimonial {
+  id      String   @id @default(cuid())
+  author  String
+  company String
+  quote   String
+}
+
+model Achievement {
+  id    String @id @default(cuid())
+  label String
+  date  String
+}
+
+model BlogPost {
+  id        String   @id @default(cuid())
+  title     String
+  category  String
+  excerpt   String
+  body      String
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model SeoSetting {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  ogImage     String
+  keywords    String
+}
+
+model ContactDetail {
+  id      String @id @default(cuid())
+  email   String
+  phone   String
+  whatsapp String
+  address String
+}
+
+model SocialLink {
+  id    String @id @default(cuid())
+  label String
+  url   String
+}
+
+model Media {
+  id       String @id @default(cuid())
+  url      String
+  alt      String
+  category String
+}
