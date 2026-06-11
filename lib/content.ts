@@ -1,8 +1,8 @@
 export const hero = {
   name: 'Apollo Vale',
-  role: 'Founder, Product Designer & Creative Director',
+  role: 'Creative Director · Digital Agency · Product Experience Studio',
   description:
-    'I build premium digital identities, agency-grade experiences, and scalable brand systems for ambitious founders and modern businesses.',
+    'We design luminous digital products, premium brand systems, and conversion-focused experiences for ambitious startups, founders, and global teams.',
   actions: [
     { label: 'Work with me', href: '#contact' },
     { label: 'Explore projects', href: '#projects' }
@@ -11,9 +11,9 @@ export const hero = {
 };
 
 export const about = {
-  title: 'Designing premium digital experiences for future-facing brands.',
+  title: 'Luxury storytelling, high-converting systems, and cinematic web experiences.',
   summary:
-    'With a decade of experience shipping high-end product journeys, I specialize in immersive web ecosystems, polished motion systems, and intelligent design that feels luxurious yet human.',
+    'For more than a decade, we have helped ambitious brands launch websites, digital products, and motion-led campaigns with an editorial feel, world-class polish, and measurable business impact.',
   skills: ['Product Design', 'Brand Strategy', 'Motion UX', 'Full-stack Experience', 'Visual Systems', 'Agency Growth'],
   stats: [
     { label: 'Projects delivered', value: '48+' },
@@ -30,22 +30,22 @@ export const about = {
 
 export const services = [
   {
-    title: 'Brand Experience',
-    subtitle: 'Visual systems that feel premium.',
+    title: 'Brand Systems',
+    subtitle: 'Luxury identity systems for founders and emerging enterprises.',
     price: 'Starting at $12k',
-    features: ['Visual identity', 'Brand guidelines', 'Launch package']
+    features: ['Visual identity', 'Art direction', 'Campaign launch kits']
   },
   {
-    title: 'Digital Product Design',
-    subtitle: 'Interfaces built for scale.',
+    title: 'Product Design',
+    subtitle: 'Premium interfaces designed to convert and scale.',
     price: 'Starting at $18k',
     features: ['UX strategy', 'Prototypes', 'Design systems']
   },
   {
     title: 'Web & Motion',
-    subtitle: 'Futuristic websites with depth.',
+    subtitle: 'Immersive websites with cinematic interactions and depth.',
     price: 'Starting at $14k',
-    features: ['Animated landing pages', 'Parallax systems', 'Performance-first']
+    features: ['Animated pages', 'Parallax systems', 'Performance-first delivery']
   }
 ];
 
@@ -56,6 +56,8 @@ export const projects = [
     category: 'Enterprise SaaS',
     description: 'A modern launch platform with immersive product storytelling.',
     image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
+    stack: ['Next.js', 'Motion', 'Analytics'],
+    results: '+72% signups',
     demo: '#',
     github: '#'
   },
@@ -65,6 +67,8 @@ export const projects = [
     category: 'Luxury Brand',
     description: 'Website design that blends editorial direction with digital elegance.',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80',
+    stack: ['Figma', 'Storytelling', 'Brand Systems'],
+    results: '3x brand recall',
     demo: '#',
     github: '#'
   },
@@ -74,6 +78,8 @@ export const projects = [
     category: 'Studio Showcase',
     description: 'Interactive portfolio with animated transitions and storytelling.',
     image: 'https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&fit=crop&w=900&q=80',
+    stack: ['GSAP', 'Motion', 'Interactive UI'],
+    results: '42% longer engagement',
     demo: '#',
     github: '#'
   }
@@ -94,8 +100,26 @@ export const testimonials = [
 
 export const achievements = [
   { label: 'Awwwards Honorable Mention', date: '2025' },
-  { label: 'Best Product Site', date: '2024' },
+  { label: 'Top 10 Premium Web Studio', date: '2024' },
   { label: 'Certified UX Strategist', date: '2023' }
+];
+
+export const processSteps = [
+  'Discovery',
+  'Strategy',
+  'Design',
+  'Development',
+  'Testing',
+  'Launch'
+];
+
+export const stackItems = ['Next.js', 'TypeScript', 'Framer Motion', 'GSAP', 'Tailwind', 'Prisma', 'Vercel', 'Figma'];
+
+export const stats = [
+  { value: '48+', label: 'Projects completed' },
+  { value: '22+', label: 'Global clients' },
+  { value: '10 yrs', label: 'Creative experience' },
+  { value: '95+', label: 'Lighthouse-ready delivery' }
 ];
 
 export const blogPosts = [

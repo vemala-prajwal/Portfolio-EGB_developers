@@ -18,7 +18,7 @@ export function HeroSection() {
               transition={{ duration: 0.9, ease: 'easeOut' }}
               className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-white/70 shadow-glow"
             >
-              Premium design studio
+              Premium digital agency · Awwwards-level polish
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -27,11 +27,16 @@ export function HeroSection() {
               className="space-y-6"
             >
               <h1 className="text-5xl font-semibold leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-7xl">
-                Crafting futuristic digital brands that feel alive.
+                We build luminous digital experiences for brands that demand more.
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-slate-300">
-                {hero.description} Explore the website to experience sleek motion, glassmorphism, and a premium narrative flow.
+                {hero.description} Every interaction, surface, and transition is tuned to feel cinematic, intelligent, and conversion-ready.
               </p>
+              <div className="flex flex-wrap gap-3 pt-2 text-xs uppercase tracking-[0.25em] text-slate-200">
+                {hero.tags.map((tag) => (
+                  <span key={tag} className="rounded-full border border-white/10 bg-white/5 px-3 py-2">{tag}</span>
+                ))}
+              </div>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -72,6 +77,8 @@ export function HeroSection() {
             transition={{ duration: 1.2, delay: 0.15 }}
             className="relative mx-auto flex h-[420px] w-full max-w-[420px] items-end justify-center"
           >
+            <div className="absolute -top-6 right-0 rounded-3xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-slate-200 shadow-glow">98% client satisfaction</div>
+            <div className="absolute -bottom-6 left-0 rounded-3xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-slate-200 shadow-glow">Fast launch · refined UX</div>
             <div className="absolute inset-0 rounded-[2.5rem] bg-white/5 shadow-glow ring-1 ring-white/10 backdrop-blur-3xl" />
             <div className="relative z-10 overflow-hidden rounded-[2.5rem] border border-white/10 bg-surface2/80 p-1">
               <Image
