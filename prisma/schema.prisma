@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -12,37 +12,47 @@ model User {
   email     String   @unique
   name      String
   password  String
-  role      Role     @default(ADMIN)
+  role      String   @default("ADMIN")
   createdAt DateTime @default(now())
-}
-
-enum Role {
-  ADMIN
-  EDITOR
 }
 
 model Project {
   id          String   @id @default(cuid())
+  slug        String   @unique
   title       String
+  subtitle    String   @default("")
   category    String
+  industry    String   @default("")
   description String
   image       String
+  stack       String   @default("[]")
+  results     String   @default("")
+  size        String   @default("medium")
+  problem     String   @default("")
+  solution    String   @default("")
+  technology  String   @default("")
+  outcome     String   @default("")
+  impact      String   @default("")
+  metrics     String   @default("[]")
   demoUrl     String?
   githubUrl   String?
   published   Boolean  @default(true)
+  featured    Boolean  @default(true)
+  order       Int      @default(0)
   createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Service {
-  id        String   @id @default(cuid())
-  title     String
-  subtitle  String
-  price     String
-  features  String[]
+  id       String  @id @default(cuid())
+  title    String
+  subtitle String
+  price    String
+  features String  @default("[]")
 }
 
 model Testimonial {
-  id      String   @id @default(cuid())
+  id      String @id @default(cuid())
   author  String
   company String
   quote   String
@@ -73,11 +83,11 @@ model SeoSetting {
 }
 
 model ContactDetail {
-  id      String @id @default(cuid())
-  email   String
-  phone   String
+  id       String @id @default(cuid())
+  email    String
+  phone    String
   whatsapp String
-  address String
+  address  String
 }
 
 model SocialLink {

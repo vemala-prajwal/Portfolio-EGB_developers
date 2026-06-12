@@ -6,7 +6,7 @@ import { Magnetic } from '@/components/motion/magnetic';
 
 const links = [
   { label: 'Approach', href: '#approach' },
-  { label: 'Work', href: '#projects' },
+  { label: 'Work', href: '/work' },
   { label: 'Pricing', href: '#services' },
   { label: 'Contact', href: '#contact' }
 ];

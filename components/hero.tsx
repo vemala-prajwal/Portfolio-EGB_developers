@@ -1,14 +1,50 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { hero } from '@/lib/content';
 import { WordReveal } from '@/components/motion/word-reveal';
 import { Magnetic } from '@/components/motion/magnetic';
+import { useSmoothScroll } from '@/components/providers/smooth-scroll-provider';
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const { ready, reducedMotion } = useSmoothScroll();
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const content = contentRef.current;
+    if (!ready || !section || !content || reducedMotion) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      gsap.to(content, {
+        y: -120,
+        opacity: 0.15,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.2
+        }
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, [ready, reducedMotion]);
+
   return (
-    <section id="home" className="relative flex min-h-screen flex-col justify-center px-6 pb-20 pt-32 sm:px-10 lg:px-16">
-      <div className="mx-auto w-full max-w-6xl">
+    <section
+      id="home"
+      ref={sectionRef}
+      className="relative flex min-h-screen flex-col justify-center px-6 pb-20 pt-32 sm:px-10 lg:px-16"
+    >
+      <div ref={contentRef} className="mx-auto w-full max-w-6xl will-change-transform">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}

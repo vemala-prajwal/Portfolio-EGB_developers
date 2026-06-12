@@ -1,6 +1,7 @@
 'use client';
 
 import { testimonials } from '@/lib/content';
+import { ScrollReveal } from '@/components/motion/scroll-reveal';
 
 function Card({ item }: { item: (typeof testimonials)[0] }) {
   return (
@@ -12,7 +13,9 @@ function Card({ item }: { item: (typeof testimonials)[0] }) {
         </div>
         <div>
           <p className="text-sm font-medium text-white">{item.author}</p>
-          <p className="text-xs text-muted">{item.role}, {item.company}</p>
+          <p className="text-xs text-muted">
+            {item.role}, {item.company}
+          </p>
         </div>
       </div>
     </article>
@@ -24,9 +27,9 @@ export function TestimonialsSection() {
 
   return (
     <section className="border-y border-white/[0.06] py-20">
-      <div className="mb-12 px-6 text-center sm:px-10 lg:px-16">
+      <ScrollReveal className="mb-12 px-6 text-center sm:px-10 lg:px-16">
         <p className="text-xs font-medium uppercase tracking-[0.4em] text-muted">Testimonials</p>
-      </div>
+      </ScrollReveal>
       <div className="overflow-hidden">
         <div className="marquee-track flex w-max gap-5 px-4">
           {items.map((item, i) => (
