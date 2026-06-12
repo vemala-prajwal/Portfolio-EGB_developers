@@ -1,27 +1,52 @@
-import { socialLinks } from '@/lib/content';
+'use client';
+
+import { footerLinks, socialLinks, contact } from '@/lib/content';
+import { Magnetic } from '@/components/motion/magnetic';
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 px-6 py-12 sm:px-10 lg:px-16">
-      <div className="mx-auto flex max-w-7xl flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-        <div className="max-w-xl space-y-4">
-          <p className="text-sm uppercase tracking-[0.35em] text-accent/80">Apollo Vale</p>
-          <h3 className="text-3xl font-semibold text-white">Built to feel premium, memorable, and conversion-ready.</h3>
-          <p className="text-sm text-slate-300">A refined agency-style website for modern brands, founders, and teams that want a digital presence that performs as beautifully as it looks—across every interaction and every launch moment.</p>
+    <footer className="border-t border-white/[0.06] px-6 py-16 sm:px-10 lg:px-16">
+      <div className="mx-auto max-w-6xl">
+        <div className="flex flex-col gap-12 lg:flex-row lg:justify-between">
+          <div>
+            <p className="font-display text-lg font-semibold text-white">egb developers</p>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
+              Great products come from teams that are close enough to care — and opinionated enough to change things.
+            </p>
+          </div>
+
+          <div className="flex gap-16">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-muted">Links</p>
+              <ul className="mt-4 space-y-2">
+                {footerLinks.navigation.map((l) => (
+                  <li key={l.href}><a href={l.href} className="link-premium text-sm text-muted hover:text-white">{l.label}</a></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-muted">Plans</p>
+              <ul className="mt-4 space-y-2">
+                {footerLinks.services.map((l) => (
+                  <li key={l.label}><a href={l.href} className="link-premium text-sm text-muted hover:text-white">{l.label}</a></li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-wrap items-center gap-4 text-sm text-slate-300">
-          <a href="#home" className="rounded-full border border-white/10 bg-white/5 px-3 py-2 transition hover:text-white">Home</a>
-          <a href="#projects" className="rounded-full border border-white/10 bg-white/5 px-3 py-2 transition hover:text-white">Projects</a>
-          <a href="#contact" className="rounded-full border border-white/10 bg-white/5 px-3 py-2 transition hover:text-white">Contact</a>
-          <a href="/secret-admin-login" className="rounded-full border border-accent/40 bg-accent/10 px-3 py-2 text-accent transition hover:text-white">Admin login</a>
-        </div>
-      </div>
-      <div className="mx-auto mt-10 flex max-w-7xl flex-col gap-4 border-t border-white/10 pt-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
-        <p>© 2026 Apollo Vale. All rights reserved.</p>
-        <div className="flex flex-wrap items-center gap-4">
-          {socialLinks.map((social) => (
-            <a key={social.label} href={social.href} className="transition hover:text-white">{social.label}</a>
-          ))}
+
+        <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-white/[0.06] pt-8 sm:flex-row">
+          <p className="text-xs text-muted">© 2026 EGB Developers</p>
+          <div className="flex gap-6">
+            {socialLinks.map((s) => (
+              <a key={s.label} href={s.href} className="text-xs text-muted hover:text-white">{s.label}</a>
+            ))}
+          </div>
+          <Magnetic strength={0.15}>
+            <a href={`mailto:${contact.email}`} data-cursor="pointer" className="btn-primary px-5 py-2.5 text-xs">
+              Schedule your call
+            </a>
+          </Magnetic>
         </div>
       </div>
     </footer>

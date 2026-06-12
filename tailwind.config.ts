@@ -9,21 +9,33 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        surface: '#0b1120',
-        surface2: '#111827',
+        surface: '#030303',
+        surface2: '#0a0a0a',
+        muted: '#888888',
         accent: '#6b5bff',
         accent2: '#38d7ff'
       },
-      boxShadow: {
-        glow: '0 0 60px rgba(107, 91, 255, 0.22)',
-        glass: '0 20px 80px rgba(0,0,0,0.14)'
-      },
-      backgroundImage: {
-        'hero-gradient': 'radial-gradient(circle at top, rgba(107,91,255,0.18), transparent 32%), radial-gradient(circle at 20% 20%, rgba(56,215,255,0.18), transparent 25%)',
-        'frost': 'linear-gradient(135deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03))'
+      fontSize: {
+        hero: ['clamp(2.75rem,7vw,6.5rem)', { lineHeight: '0.98', letterSpacing: '-0.035em' }],
+        'hero-lg': ['clamp(3.5rem,9vw,7.5rem)', { lineHeight: '0.95', letterSpacing: '-0.04em' }],
+        section: ['clamp(2rem,4.5vw,4rem)', { lineHeight: '1.05', letterSpacing: '-0.03em' }],
+        metric: ['clamp(3rem,8vw,6rem)', { lineHeight: '1', letterSpacing: '-0.04em' }]
       },
       fontFamily: {
-        display: ['Inter', 'system-ui', 'sans-serif']
+        display: ['var(--font-display)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-body)', 'system-ui', 'sans-serif']
+      },
+      transitionTimingFunction: {
+        premium: 'cubic-bezier(0.22, 1, 0.36, 1)'
+      },
+      animation: {
+        float: 'float 6s ease-in-out infinite'
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' }
+        }
       }
     }
   },

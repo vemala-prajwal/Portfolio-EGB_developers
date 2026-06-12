@@ -2,28 +2,62 @@
 
 import { motion } from 'framer-motion';
 import { services } from '@/lib/content';
-import { Button } from '@/components/ui/button';
+import { Magnetic } from '@/components/motion/magnetic';
 
 export function ServicesSection() {
   return (
-    <section id="services" className="px-6 py-24 sm:px-10 lg:px-16">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-12 text-center">
-          <p className="text-sm uppercase tracking-[0.35em] text-accent/80">Services</p>
-          <h2 className="mt-4 text-4xl font-semibold text-white sm:text-5xl">High-touch design systems for brands that want to feel undeniable.</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-slate-300">Every engagement blends strategy, visual polish, motion, and implementation detail so the final experience feels deliberate and premium.</p>
+    <section id="services" className="px-6 py-28 sm:px-10 lg:px-16 lg:py-40">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-16 text-center">
+          <p className="text-xs font-medium uppercase tracking-[0.4em] text-muted">Pricing</p>
+          <h2 className="mt-4 font-display text-section font-medium text-white">
+            Built for momentum, not contracts.
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-lg text-muted">
+            If you have a clear vision, many partnerships start with a project and evolve into ongoing collaboration.
+          </p>
         </div>
-        <div className="grid gap-6 lg:grid-cols-3">
-          {services.map((service, index) => (
-            <motion.article key={service.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: index * 0.08 }} className="group glass-card rounded-[2rem] border border-white/10 p-8 shadow-glow transition duration-300 hover:-translate-y-1 hover:border-accent/40">
-              <div className="flex items-center justify-between">
-                <p className="text-xs uppercase tracking-[0.35em] text-accent/90">{service.title}</p>
-                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.3em] text-slate-200">Premium</span>
+
+        <div className="grid gap-4 lg:grid-cols-3">
+          {services.map((plan, i) => (
+            <motion.article
+              key={plan.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+              className={`surface-card flex flex-col rounded-2xl p-8 lg:p-10 ${
+                plan.featured ? 'border-white/20 bg-white/[0.03]' : ''
+              }`}
+            >
+              <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-muted">{plan.tier}</p>
+              <h3 className="mt-4 font-display text-2xl font-semibold text-white">{plan.title}</h3>
+              <div className="mt-4 flex items-baseline gap-1">
+                <span className="font-display text-4xl font-bold text-white">{plan.price}</span>
+                {'period' in plan && plan.period && (
+                  <span className="text-sm text-muted">{plan.period}</span>
+                )}
               </div>
-              <h3 className="mt-5 text-2xl font-semibold text-white">{service.subtitle}</h3>
-              <p className="mt-4 text-slate-300">{service.price}</p>
-              <ul className="mt-6 space-y-3 text-slate-200">{service.features.map((feature) => <li key={feature} className="flex items-start gap-3 text-sm"><span className="mt-1 h-2 w-2 rounded-full bg-accent2" />{feature}</li>)}</ul>
-              <Button className="mt-8 w-full">Plan a session</Button>
+              <p className="mt-4 text-sm leading-[1.7] text-muted">{plan.subtitle}</p>
+
+              <ul className="mt-8 flex-1 space-y-3">
+                {plan.features.map((f) => (
+                  <li key={f} className="flex gap-3 text-sm text-muted">
+                    <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-white/40" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <Magnetic strength={0.12} className="mt-10">
+                <a
+                  href="#contact"
+                  data-cursor="pointer"
+                  className={plan.featured ? 'btn-primary w-full justify-center py-3.5 text-sm' : 'btn-secondary w-full justify-center py-3.5 text-sm'}
+                >
+                  {plan.cta}
+                </a>
+              </Magnetic>
             </motion.article>
           ))}
         </div>

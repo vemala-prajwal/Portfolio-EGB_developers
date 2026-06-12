@@ -1,35 +1,36 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { testimonials } from '@/lib/content';
 
-export function TestimonialsSection() {
+function Card({ item }: { item: (typeof testimonials)[0] }) {
   return (
-    <section id="testimonials" className="px-6 py-24 sm:px-10 lg:px-16">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-12 text-center">
-          <p className="text-sm uppercase tracking-[0.35em] text-accent/80">Testimonials</p>
-          <h2 className="mt-4 text-4xl font-semibold text-white sm:text-5xl">Trusted by ambitious teams that value clarity, craft, and launch-ready polish.</h2>
+    <article className="surface-card w-[360px] shrink-0 rounded-2xl p-8">
+      <p className="text-base leading-[1.75] text-muted">&ldquo;{item.quote}&rdquo;</p>
+      <div className="mt-8 flex items-center gap-4 border-t border-white/[0.06] pt-6">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-xs font-semibold text-white">
+          {item.initials}
         </div>
-        <div className="grid gap-6 lg:grid-cols-2">
-          {testimonials.map((item, index) => (
-            <motion.article
-              key={item.author}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              className="glass-card rounded-[2rem] border border-white/10 p-8 shadow-glow"
-            >
-              <p className="text-lg leading-8 text-slate-100">“{item.quote}”</p>
-              <div className="mt-8 flex items-center justify-between gap-4">
-                <div>
-                  <p className="font-semibold text-white">{item.author}</p>
-                  <p className="text-sm text-slate-400">{item.company}</p>
-                </div>
-                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.3em] text-slate-200">Verified</span>
-              </div>
-            </motion.article>
+        <div>
+          <p className="text-sm font-medium text-white">{item.author}</p>
+          <p className="text-xs text-muted">{item.role}, {item.company}</p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export function TestimonialsSection() {
+  const items = [...testimonials, ...testimonials];
+
+  return (
+    <section className="border-y border-white/[0.06] py-20">
+      <div className="mb-12 px-6 text-center sm:px-10 lg:px-16">
+        <p className="text-xs font-medium uppercase tracking-[0.4em] text-muted">Testimonials</p>
+      </div>
+      <div className="overflow-hidden">
+        <div className="marquee-track flex w-max gap-5 px-4">
+          {items.map((item, i) => (
+            <Card key={`${item.author}-${i}`} item={item} />
           ))}
         </div>
       </div>
