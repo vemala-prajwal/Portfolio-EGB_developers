@@ -4,6 +4,8 @@
 
 :root {
   color-scheme: dark;
+  --font-display: "Segoe UI Variable Display", "Segoe UI", Arial, sans-serif;
+  --font-body: "Segoe UI Variable Text", "Segoe UI", Arial, sans-serif;
   --accent: #6b5bff;
   --accent2: #38d7ff;
   --surface: #030303;

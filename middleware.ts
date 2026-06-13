@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { verifyToken } from '@/lib/auth';
+import { verifyEdgeToken } from '@/lib/edge-auth';
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (!pathname.startsWith('/admin')) {
@@ -20,7 +20,7 @@ export function middleware(request: NextRequest) {
   }
 
   try {
-    verifyToken(token);
+    await verifyEdgeToken(token);
     return NextResponse.next();
   } catch {
     const response = NextResponse.redirect(new URL('/secret-admin-login', request.url));

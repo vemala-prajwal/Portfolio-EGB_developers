@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 
-const siteUrl = 'https://example.com';
+const siteUrl = 'https://portfolio-egb-developers.vercel.app';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -9,11 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date()
     },
     {
-      url: `${siteUrl}/secret-admin-login`,
-      lastModified: new Date()
-    },
-    {
-      url: `${siteUrl}/admin/dashboard`,
+      url: `${siteUrl}/work`,
       lastModified: new Date()
     }
   ];

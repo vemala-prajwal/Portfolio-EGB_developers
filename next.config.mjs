@@ -1,8 +1,5 @@
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    webpackBuildWorker: false
-  },
   images: {
     remotePatterns: [
       {
@@ -10,10 +7,6 @@ const nextConfig = {
         hostname: '**'
       }
     ]
-  },
-  webpack(config) {
-    config.cache = false;
-    return config;
   }
 };
 

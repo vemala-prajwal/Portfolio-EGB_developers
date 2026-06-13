@@ -1,20 +1,6 @@
 import type { Metadata } from 'next';
-import { Space_Grotesk, Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from 'next-themes';
-import { cn } from '@/lib/utils';
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap'
-});
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-body',
-  display: 'swap'
-});
 
 export const metadata: Metadata = {
   title: 'EGB DEVELOPERS | Premium Digital Agency',
@@ -36,8 +22,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${inter.variable}`}>
-      <body className={cn('min-h-screen bg-surface font-body text-[18px] text-white antialiased', inter.className)}>
+    <html lang="en" suppressHydrationWarning>
+      <body className="min-h-screen bg-surface font-body text-[18px] text-white antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           {children}
         </ThemeProvider>
