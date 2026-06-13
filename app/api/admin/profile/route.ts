@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { verifyToken } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: Request) {
   const token = request.headers.get('cookie')?.split(';').find((item) => item.trim().startsWith('admin_token='))?.split('=')[1];
 

@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getProjectBySlug } from '@/lib/projects';
 
+export const dynamic = 'force-dynamic';
+
 type RouteContext = {
   params: Promise<{ slug: string }>;
 };

@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { getAllProjects } from '@/lib/projects';
 import { ProjectsTable } from '@/components/admin/projects-table';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminProjectsPage() {
   const projects = await getAllProjects();
 

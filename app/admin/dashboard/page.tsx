@@ -3,6 +3,8 @@ import type { Route } from 'next';
 import { getAllProjects } from '@/lib/projects';
 import { getAdminUser } from '@/lib/api-auth';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminDashboardPage() {
   const [projects, user] = await Promise.all([getAllProjects(), getAdminUser()]);
   const published = projects.filter((project) => project.published).length;

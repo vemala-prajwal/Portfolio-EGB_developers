@@ -4,6 +4,8 @@ import { requireAdmin } from '@/lib/api-auth';
 import { prisma } from '@/lib/prisma';
 import { getProjectById, serializeProject, slugify, toPrismaProjectData } from '@/lib/projects';
 
+export const dynamic = 'force-dynamic';
+
 type RouteContext = {
   params: Promise<{ id: string }>;
 };

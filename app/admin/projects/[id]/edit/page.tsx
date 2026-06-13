@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 import { ProjectForm } from '@/components/admin/project-form';
 import { getProjectById } from '@/lib/projects';
 
+export const dynamic = 'force-dynamic';
+
 type EditProjectPageProps = {
   params: Promise<{ id: string }>;
 };

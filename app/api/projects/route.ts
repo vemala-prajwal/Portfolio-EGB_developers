@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getPublishedProjects } from '@/lib/projects';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const featuredOnly = searchParams.get('featured') === 'true';

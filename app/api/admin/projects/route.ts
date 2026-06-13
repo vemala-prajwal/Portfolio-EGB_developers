@@ -4,6 +4,8 @@ import { requireAdmin } from '@/lib/api-auth';
 import { prisma } from '@/lib/prisma';
 import { getAllProjects, serializeProject, slugify, toPrismaProjectData } from '@/lib/projects';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const { response } = await requireAdmin();
   if (response) return response;
