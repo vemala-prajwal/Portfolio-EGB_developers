@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma';
+import { projects as staticProjects } from '@/lib/content';
 
 export type ProjectData = {
   id: string;
@@ -111,24 +112,70 @@ export function slugify(text: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
-export async function getPublishedProjects(featuredOnly = false): Promise<ProjectData[]> {
-  const projects = await prisma.project.findMany({
-    where: {
-      published: true,
-      ...(featuredOnly ? { featured: true } : {})
-    },
-    orderBy: [{ order: 'asc' }, { createdAt: 'desc' }]
-  });
+function staticProjectToProjectData(project: (typeof staticProjects)[number], order: number): ProjectData {
+  const now = new Date(0);
 
-  return projects.map(serializeProject);
+  return {
+    id: project.id,
+    slug: project.id,
+    title: project.title,
+    subtitle: project.subtitle,
+    category: project.category,
+    industry: project.industry,
+    description: project.description,
+    image: project.image,
+    stack: project.stack,
+    results: project.results,
+    size: project.size,
+    problem: project.problem,
+    solution: project.solution,
+    technology: project.technology,
+    outcome: project.outcome,
+    impact: project.impact,
+    metrics: project.metrics,
+    demoUrl: project.demo !== '#' ? project.demo : null,
+    githubUrl: project.github !== '#' ? project.github : null,
+    published: true,
+    featured: true,
+    order,
+    createdAt: now,
+    updatedAt: now
+  };
+}
+
+function getStaticProjects(featuredOnly = false): ProjectData[] {
+  const projects = staticProjects.map(staticProjectToProjectData);
+  return featuredOnly ? projects.filter((project) => project.featured) : projects;
+}
+
+export async function getPublishedProjects(featuredOnly = false): Promise<ProjectData[]> {
+  try {
+    const projects = await prisma.project.findMany({
+      where: {
+        published: true,
+        ...(featuredOnly ? { featured: true } : {})
+      },
+      orderBy: [{ order: 'asc' }, { createdAt: 'desc' }]
+    });
+
+    return projects.map(serializeProject);
+  } catch (error) {
+    console.error('Falling back to static projects:', error);
+    return getStaticProjects(featuredOnly);
+  }
 }
 
 export async function getProjectBySlug(slug: string): Promise<ProjectData | null> {
-  const project = await prisma.project.findFirst({
-    where: { slug, published: true }
-  });
+  try {
+    const project = await prisma.project.findFirst({
+      where: { slug, published: true }
+    });
 
-  return project ? serializeProject(project) : null;
+    return project ? serializeProject(project) : null;
+  } catch (error) {
+    console.error('Falling back to static project:', error);
+    return getStaticProjects().find((project) => project.slug === slug) ?? null;
+  }
 }
 
 export async function getAllProjects(): Promise<ProjectData[]> {
